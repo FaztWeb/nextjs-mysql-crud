@@ -4,12 +4,10 @@ import { ProductForm } from "../components/ProductForm";
 import { Layout } from "../components/Layout";
 
 function NewPage({ products }) {
-  // if (products) return <h1>no products yet</h1>;
   return (
     <Layout>
       <div className="h-5/6 grid place-items-center">
-
-      <ProductForm />
+        <ProductForm />
       </div>
     </Layout>
   );

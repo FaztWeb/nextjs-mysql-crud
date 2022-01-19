@@ -10,10 +10,10 @@ export function ProductCard({ product }) {
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {product.name}
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
+        <p className="font-normal text-gray-700 dark:text-gray-200">
           {product.description}
         </p>
-        <p className="font-bold text-gray-800 text-2xl">{product.price} $</p>
+        <p className="font-bold text-gray-800 dark:text-gray-100 text-2xl">{product.price} $</p>
       </a>
     </Link>
   );

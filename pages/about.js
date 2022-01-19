@@ -4,9 +4,11 @@ import { Layout } from "../components/Layout";
 function about() {
   return (
     <Layout>
-      <h1>About</h1>
+      <div className="text-center p-10">
 
-      <p>
+      <h1 className="font-bold text-2xl my-4">About</h1>
+
+      <p className="text-gray-300">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti id
         aut sed cum architecto quae illum fuga, necessitatibus aperiam neque
         tempora saepe similique alias! Amet esse veritatis, magnam non a
@@ -41,6 +43,7 @@ function about() {
         temporibus excepturi eius optio atque sunt praesentium adipisci at
         molestiae!
       </p>
+      </div>
     </Layout>
   );
 }
