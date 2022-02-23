@@ -1,0 +1,27 @@
+### get all products
+
+GET http://localhost:3000/api/products
+
+### get a single product
+GET http://localhost:3000/api/products/14
+
+### create a single product
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "something name 2",
+  "description": "something description"
+}
+
+
+### update a single product
+PUT http://localhost:3000/api/products/14
+Content-Type: application/json
+
+{
+  "description": "this is my new description"
+}
+
+### delete a single product
+DELETE http://localhost:3000/api/products/14

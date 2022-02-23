@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { Layout } from "../../components/Layout";
+import { Layout } from "components/Layout";
 
 function ProductPage({ product }) {
   const router = useRouter();
@@ -43,9 +43,11 @@ function ProductPage({ product }) {
 }
 
 export const getServerSideProps = async ({ query }) => {
-  const { data: product } = await axios.get(
+  const { data: product} = await axios.get(
     "http://localhost:3000/api/products/" + query.id
   );
+
+  console.log(product)
 
   return {
     props: {

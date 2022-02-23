@@ -1,2 +1,2 @@
-import newPage from "../../new";
+import newPage from "pages/new";
 export default newPage;

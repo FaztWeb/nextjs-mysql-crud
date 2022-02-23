@@ -1,9 +1,8 @@
 import axios from "axios";
-import Navbar from "../components/Navbar";
-import { ProductForm } from "../components/ProductForm";
-import { Layout } from "../components/Layout";
+import { ProductForm } from "components/ProductForm";
+import { Layout } from "components/Layout";
 
-function NewPage({ products }) {
+function NewPage() {
   return (
     <Layout>
       <div className="h-5/6 grid place-items-center">

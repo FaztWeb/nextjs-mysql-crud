@@ -1,10 +1,11 @@
 module.exports = {
   reactStrictMode: true,
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: '/',
-        destination: '/products'
+        destination: '/products',
+        permanent: true
       }
     ]
   }

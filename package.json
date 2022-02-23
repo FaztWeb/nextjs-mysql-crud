@@ -8,18 +8,19 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "mysql2": "^2.3.3",
-    "next": "12.0.8",
+    "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hot-toast": "^2.2.0"
+    "react-hot-toast": "^2.2.0",
+    "serverless-mysql": "^1.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.8",
-    "postcss": "^8.4.5",
-    "tailwindcss": "^3.0.15"
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.1.0",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23"
   }
 }

@@ -1,11 +1,13 @@
-import { createPool } from "mysql2/promise";
+import mysql from "serverless-mysql";
 
-const pool = createPool({
-  host: "localhost",
-  user: "root",
-  password: "password",
-  port: 3306,
-  database: "productsdb",
+const pool = mysql({
+  config: {
+    host: "localhost",
+    user: "root",
+    password: "password",
+    port: 3306,
+    database: "productsdb",
+  },
 });
 
 export { pool };

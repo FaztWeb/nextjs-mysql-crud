@@ -24,7 +24,8 @@ export function ProductForm() {
     if (router.query?.id) {
       fetchProduct(router.query.id);
     }
-  }, []);
+    console.log("called");
+  }, [router.query.id]);
 
   const handleChange = ({ target: { name, value } }) =>
     setProduct({ ...product, [name]: value });
@@ -33,8 +34,11 @@ export function ProductForm() {
     e.preventDefault();
     try {
       if (router.query?.id) {
-        console.log("updating");
-        await axios.put("/api/products/" + router.query.id, product);
+        await axios.put("/api/products/" + router.query.id, {
+          name: product.name,
+          description: product.description,
+          price: product.price,
+        });
         toast.success("Task Updated", {
           position: "bottom-center",
         });
@@ -45,7 +49,7 @@ export function ProductForm() {
         });
       }
 
-      router.push("/");
+      router.push("/products");
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -72,6 +76,7 @@ export function ProductForm() {
             name="name"
             onChange={handleChange}
             value={product.name}
+            autoComplete="off"
           />
         </div>
 
