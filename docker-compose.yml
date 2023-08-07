@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=nextdb
+    ports:
+      - 3307:3306
+    # init sql script
+    volumes:
+      - ./database/db.sql:/docker-entrypoint-initdb.d/init.sql
+    command: mysqld --default-authentication-plugin=mysql_native_password
+

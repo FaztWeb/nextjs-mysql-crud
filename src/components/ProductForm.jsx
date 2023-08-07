@@ -1,7 +1,8 @@
+"use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/router";
+import { useRouter, useParams } from "next/navigation";
 
 export function ProductForm() {
   const [product, setProduct] = useState({
@@ -10,6 +11,7 @@ export function ProductForm() {
     price: 0,
   });
   const router = useRouter();
+  const params = useParams();
 
   useEffect(() => {
     const fetchProduct = async (id) => {
@@ -21,11 +23,10 @@ export function ProductForm() {
       }
     };
 
-    if (router.query?.id) {
-      fetchProduct(router.query.id);
+    if (params?.id) {
+      fetchProduct(params.id);
     }
-    console.log("called");
-  }, [router.query.id]);
+  }, [params.id]);
 
   const handleChange = ({ target: { name, value } }) =>
     setProduct({ ...product, [name]: value });
@@ -33,22 +34,25 @@ export function ProductForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (router.query?.id) {
-        await axios.put("/api/products/" + router.query.id, {
+      if (params?.id) {
+        await axios.put("/api/products/" + params.id, {
           name: product.name,
           description: product.description,
           price: product.price,
         });
+
         toast.success("Task Updated", {
           position: "bottom-center",
         });
       } else {
         await axios.post("/api/products", product);
+
         toast.success("Task Saved", {
           position: "bottom-center",
         });
       }
 
+      router.refresh();
       router.push("/products");
     } catch (error) {
       toast.error(error.response.data.message);
@@ -77,6 +81,7 @@ export function ProductForm() {
             onChange={handleChange}
             value={product.name}
             autoComplete="off"
+            autoFocus
           />
         </div>
 
@@ -107,7 +112,7 @@ export function ProductForm() {
           <textarea
             name="description"
             id="description"
-            rows="2"
+            rows="3"
             placeholder="Product description"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline dark:bg-gray-600 dark:border-slate-900 dark:text-white"
             onChange={handleChange}
@@ -116,7 +121,7 @@ export function ProductForm() {
         </div>
 
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          {router.query?.id ? "Update Product" : "Save Product"}
+          {params?.id ? "Update Product" : "Save Product"}
         </button>
       </form>
     </div>

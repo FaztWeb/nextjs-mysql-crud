@@ -1,23 +1,34 @@
-import axios from "axios";
-import { useRouter } from "next/router";
-import toast from "react-hot-toast";
-import { Layout } from "components/Layout";
+"use client";
 
-function ProductPage({ product }) {
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+async function loadProduct(productId) {
+  const { data } = await axios.get(
+    "http://localhost:3000/api/products/" + productId
+  );
+  return data;
+}
+
+async function ProductPage({ params }) {
   const router = useRouter();
+  const product = await loadProduct(params.id);
 
   const handleDelete = async (id) => {
     try {
       await axios.delete("/api/products/" + id);
       toast.success("Task deleted");
+
       router.push("/");
+      router.refresh();
     } catch (error) {
       console.error(error.response.data.message);
     }
   };
 
   return (
-    <Layout>
+    <>
       <div className="p-6 bg-white dark:bg-gray-800">
         <p>Name: {product.name}</p>
         <p>Description: {product.description}</p>
@@ -38,22 +49,8 @@ function ProductPage({ product }) {
           Edit
         </button>
       </div>
-    </Layout>
+    </>
   );
 }
-
-export const getServerSideProps = async ({ query }) => {
-  const { data: product} = await axios.get(
-    "http://localhost:3000/api/products/" + query.id
-  );
-
-  console.log(product)
-
-  return {
-    props: {
-      product,
-    },
-  };
-};
 
 export default ProductPage;
